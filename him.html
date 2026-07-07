@@ -1,0 +1,215 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday! ❤️</title>
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffe3e3 0%, #fbc2eb 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        .screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            transition: opacity 0.5s ease;
+        }
+
+        .hidden {
+            display: none !important;
+            opacity: 0;
+        }
+
+        .envelope {
+            background: #ff7597;
+            padding: 40px 60px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            cursor: pointer;
+            text-align: center;
+            color: white;
+            transform: scale(1);
+            transition: transform 0.3s ease;
+        }
+
+        .envelope:hover {
+            transform: scale(1.05);
+        }
+
+        .heart-seal {
+            font-size: 3rem;
+            animation: heartbeat 1.2s infinite;
+        }
+
+        h1 {
+            color: #d63384;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 160px);
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 20px;
+            text-align: center;
+            font-weight: bold;
+            color: #4a4a4a;
+            box-shadow: 0 8px 20px rgba(214, 51, 132, 0.15);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background: #fff0f5;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            20% { transform: scale(1.1); }
+            40% { transform: scale(1.05); }
+            60% { transform: scale(1.15); }
+            80% { transform: scale(1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+
+    <div id="welcome-screen" class="screen">
+        <div class="envelope" onclick="openSurprise()">
+            <div class="heart-seal">❤️</div>
+            <p>Click to Open Your Surprise</p>
+        </div>
+    </div>
+
+    <div id="main-screen" class="screen hidden">
+        <h1>Happy Birthday, My Love! ✨</h1>
+        
+        <div class="card-grid">
+            <div class="card" onclick="openModal('memories')">📸 Our Memories</div>
+            <div class="card" onclick="openModal('cake')">🎂 Blow the Candles</div>
+            <div class="card" onclick="openModal('letter')">✉️ A Letter for You</div>
+            <div class="card" onclick="openModal('gift')">🎁 Your Gift</div>
+        </div>
+    </div>
+
+    <div id="modal" class="modal hidden" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script>
+        function openSurprise() {
+            document.getElementById('welcome-screen').classList.add('hidden');
+            document.getElementById('main-screen').classList.remove('hidden');
+        }
+
+        function openModal(type) {
+            const modal = document.getElementById('modal');
+            const body = document.getElementById('modal-body');
+            
+            if (type === 'my favourite view') {
+                body.innerHTML = `
+                    <h3> my love</h3>
+                    <div class="photo-grid, style="display: grid; grid-template-columns: repeat(2, 1fr): gap: 10px; margin-top: 15px;">
+                    <img src="image1.jpeg" style="width:100%; height:120px; ,object-fit:cover; border-radius:10px;">
+                    <img src="image2.jprg" style="width:100%; height:120px; object-fit:cover; border-radius:10px;">
+                    <img src="image3.jpeg" style="width:100%; height:120px; object-fit:cover; border-radius:10px;">
+                    <img src="image4.jpeg" style="width:100%; height:120px; object-fit:cover; border-radius:10px;">
+                </div>
+                `;
+            }
+            else if (type === 'cake') {
+                body.innerHTML = `
+                    <h3>Make a Wish! 🎂</h3>
+                    <div id="candle" style="font-size: 3rem; cursor:pointer; margin:20px 0;" onclick="blowCandle()">🕯️</div>
+                    <p id="cake-instruction">Click the candle flame to blow it out!</p>
+                `;
+            } else if (type === 'letter') {
+                body.innerHTML = `
+                    <h3>To My Favorite Person ✉️</h3>
+                    <p style="text-align:left; line-height:1.6; margin-top:15px;">
+                        Happy Birthday! You mean the absolute world to me. Thank you for being the brightest light in my life.I love you in every universe,my love.You'll always be my favourite person.... ❤️
+                    </p>
+                `;
+            } else if (type === 'gift') {
+                body.innerHTML = `
+                    <h3> virtual hug</h3>
+                    <video src="hug.mp4, autoplay loop muted ,style="width:100%; border-radius15px;"></video>
+                `;
+            }
+
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.add('hidden');
+        }
+
+        function blowCandle() {
+            const candle = document.getElementById('candle');
+            const text = document.getElementById('cake-instruction');
+            candle.innerHTML = '🎂'; 
+            text.innerHTML = '✨ Your wish has been sent! ✨';
+        }
+    </script>
+</body>
+</html>
