@@ -127,7 +127,25 @@
             80% { transform: scale(1); }
             100% { transform: scale(1); }
         }
-    </style>
+     <div id="modal-body">
+    </div>
+     .modal-image {
+        width: 100%;
+        max-height: 280px;
+        object-fit: cover;
+        border-radius: 12px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+    
+    .modal-note {
+        font-size: 1.15rem;
+        line-height: 1.5;
+        color: #d81b60;
+        font-weight: 500;
+        margin-top: 10px;
+    }
+</style>
 </head>
 <body>
 
@@ -147,6 +165,7 @@
             <div class="card" onclick="openModal('cake')">🎂 Blow the Candles</div>
             <div class="card" onclick="openModal('letter')">✉️ A Letter for You</div>
             <div class="card" onclick="openModal('gift')">🎁 Your Gift</div>
+            <div class="card" onclick="openModal('my favourite view')">📸 My favourite view</div>
         </div>
     </div>
 
@@ -209,7 +228,13 @@
                 "Distance means nothing when you mean everything.<br>Happy Birthday, My Favorite Person! ❤️"
             </p>
         `;
-            }
+            } 
+         else if (type === 'my favourite view') {
+            document.getElementById('modal-body').innerHTML = `
+            <img class="modal-image" src="image1.jpeg" alt="My Favorite Person">
+            <p class="modal-note">"Every single day with you is a gift🌷✨. Happy Birthday to the one who makes my heart smile. I love you! ❤️"</p>
+      `;
+         }
 
             modal.classList.remove('hidden');
         }
