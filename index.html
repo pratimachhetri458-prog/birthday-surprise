@@ -143,7 +143,7 @@
         <h1>Happy Birthday, My Love! ✨</h1>
         
         <div class="card-grid">
-            <div class="card" onclick="openModal('my favourite view')">📸 my favourite view</div>
+            <div class="card" onclick="openModal('secret')">🔒 Lock & Key</div>
             <div class="card" onclick="openModal('cake')">🎂 Blow the Candles</div>
             <div class="card" onclick="openModal('letter')">✉️ A Letter for You</div>
             <div class="card" onclick="openModal('gift')">🎁 Your Gift</div>
@@ -167,17 +167,18 @@
             const modal = document.getElementById('modal');
             const body = document.getElementById('modal-body');
             
-            if (type === "my favourite view") {
+            if (type === 'secret') {
                 body.innerHTML = `
-                    <h3 style="margin-bottom: 15px; color:#d63384; font-size: 1.8rem; text-align: centre;> my love</h3>
-                    <div style="display: grid; grid-template-columns: repeat(2, 1fr): gap: 10px; width:100%; max-height:380px; overflow-y: auto; padding: 5px;">
-                    <img src="image1.jpeg" style="width:100%; height:130px; ,object-fit:fit; border-radius:12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-                    <img src="image2.jprg" style="width:100%; height:130px; object-fit:fit; border-radius:12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1)">
-                    <img src="image3.jpeg" style="width:100%; height:130px; object-fit:fit; border-radius:12px;  box-shadow: 0 4px 8px rgba(0,0,0,0.1)">
-                    <img src="image4.jpeg" style="width:100%; height:130px; object-fit:fit; border-radius:12px;  box-shadow: 0 4px 8px rgba(0,0,0,0.1)">
-                </div>
-                `;
-            }
+                <h3 style="margin-bottom: 12px; color: #d63384; font-size: 1.8rem; text-align: center;">A Safe for Secrets 🔒</h3>
+                <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px; text-align: center;">My heart is locked across the distance. Enter his birthday code (DDMMYY) to unwrap the secret!</p>
+            
+                <div id="lock-box" style="background: #fff0f5; padding: 25px 15px; border-radius: 15px; border: 2px dashed #ff7597; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: inset 0 0 10px rgba(255,117,151,0.1);">
+                     <span id="lock-icon" style="font-size: 3rem; margin-bottom: 15px; transition: transform 0.3s ease;">🔒</span>
+                     <input type="text" id="lock-input" placeholder="DDMMYY" maxlength="6" style="width: 120px; padding: 10px; text-align: center; font-size: 1.2rem; border: 2px solid #ff7597; border-radius: 10px; outline: none; margin-bottom: 15px; font-family: sans-serif;">
+                     <button onclick="unlockSecretHeart()" style="background: #ff7597; color: white; border: none; padding: 10px 25px; border-radius: 20px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px rgba(255,117,151,0.3); font-size: 1rem;">Unlock My Heart</button>
+                 </div>
+              `;
+           }
             else if (type === 'cake') {
                 body.innerHTML = `
                     <h3>Make a Wish! 🎂</h3>
@@ -221,6 +222,28 @@
             candle.innerHTML = '🎂'; 
             text.innerHTML = '✨ Your wish has been sent! ✨';
         }
+        function unlockSecretHeart() {
+    const input = document.getElementById('lock-input').value.trim();
+    const box = document.getElementById('lock-box');
+    const icon = document.getElementById('lock-icon');
+    
+    if (input === '080711') { 
+        box.innerHTML = `
+            <span style="font-size: 3.5rem; margin-bottom: 10px; display:block;">🔓❤️</span>
+            <p style="font-weight: bold; color: #d63384; font-size: 1.3rem; margin-bottom: 8px;">Secret Unlocked!</p>
+            <p style="font-size: 0.95rem; color: #444; line-height: 1.5; font-style: italic;">
+                "No matter how many hundreds of miles keep us apart, you will always hold the only true key to my heart. Happy Birthday, my absolute favorite person!"
+            </p>
+        `;
+    } else {
+        icon.innerText = '❌';
+        icon.style.transform = 'scale(1.2)';
+        setTimeout(() => { 
+            icon.innerText = '🔒'; 
+            icon.style.transform = 'scale(1)';
+        }, 1500);
+    }
+}
     </script>
 </body>
 </html>
