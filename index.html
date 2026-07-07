@@ -169,12 +169,12 @@
             
             if (type === "my favourite view") {
                 body.innerHTML = `
-                    <h3> my love</h3>
-                    <div class="photo-grid, style="display: grid; grid-template-columns: repeat(2, 1fr): gap: 10px; margin-top: 15px;">
-                    <img src="image1.jpeg" style="width:100%; height:120px; ,object-fit:cover; border-radius:10px;">
-                    <img src="image2.jprg" style="width:100%; height:120px; object-fit:cover; border-radius:10px;">
-                    <img src="image3.jpeg" style="width:100%; height:120px; object-fit:cover; border-radius:10px;">
-                    <img src="image4.jpeg" style="width:100%; height:120px; object-fit:cover; border-radius:10px;">
+                    <h3 style="margin-bottom: 15px; color:#d63384; font-size: 1.8rem; text-align: centre;> my love</h3>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr): gap: 10px; width:100%; max-height:380px; overflow-y: auto; padding: 5px;">
+                    <img src="image1.jpeg" style="width:100%; height:130px; ,object-fit:fit; border-radius:12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                    <img src="image2.jprg" style="width:100%; height:130px; object-fit:fit; border-radius:12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1)">
+                    <img src="image3.jpeg" style="width:100%; height:130px; object-fit:fit; border-radius:12px;  box-shadow: 0 4px 8px rgba(0,0,0,0.1)">
+                    <img src="image4.jpeg" style="width:100%; height:130px; object-fit:fit; border-radius:12px;  box-shadow: 0 4px 8px rgba(0,0,0,0.1)">
                 </div>
                 `;
             }
@@ -184,18 +184,28 @@
                     <div id="candle" style="font-size: 3rem; cursor:pointer; margin:20px 0;" onclick="blowCandle()">🕯️</div>
                     <p id="cake-instruction">Click the candle flame to blow it out!</p>
                 `;
-            } else if (type === 'letter') {
+            }
+            else if (type === 'letter') {
                 body.innerHTML = `
                     <h3>To My Favorite Person ✉️</h3>
                     <p style="text-align:left; line-height:1.6; margin-top:15px;">
                         Happy Birthday! You mean the absolute world to me. Thank you for being the brightest light in my life.I love you in every universe,my love.You'll always be my favourite person.... ❤️
                     </p>
                 `;
-            } else if (type === 'gift') {
+            } 
+            else if (type === 'gift') {
                 body.innerHTML = `
-                    <h3> virtual hug</h3>
-                    <video src="hug.mp4, autoplay loop muted ,style="width:100%; border-radius15px;"></video>
-                `;
+            <h3 style="margin-bottom: 12px; color: #d63384; font-size: 1.8rem; text-align: center;">Your Birthday Gift! 🎁</h3>
+            <p style="font-size: 0.95rem; color: #555; margin-bottom: 15px; text-align: center;">Sending you a warm, tight squeeze across the miles...</p>
+            
+            <div style="width: 100%; max-width: 260px; margin: 0 auto; border-radius: 15px; overflow: hidden; box-shadow: 0 6px 15px rgba(0,0,0,0.15); background: #fff;">
+            <video src="hug.mp4" autoplay loop muted playsinline style="width: 100%; height: 260px; display: block; object-fit: cover;"></video>
+            </div>
+            
+            <p style="margin-top: 15px; font-style: italic; color: #ff7597; font-weight: bold; text-align: center; line-height: 1.4;">
+                "Distance means nothing when you mean everything.<br>Happy Birthday, My Favorite Person! ❤️"
+            </p>
+        `;
             }
 
             modal.classList.remove('hidden');
